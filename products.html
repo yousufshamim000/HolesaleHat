@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>প্রোডাক্ট পেজ</title>
+</head>
+<body>
+  <h1>আমাদের প্রোডাক্ট</h1>
+  <div>
+    <h2>পণ্যের নাম ১</h2>
+    <p>মূল্য: ২০০ টাকা</p>
+    <button onclick="addToCart('পণ্যের নাম ১', 200)">কার্টে যোগ করুন</button>
+  </div>
+  <br>
+  <div id="cart">
+    <h3>আপনার কার্ট</h3>
+    <ul id="cart-items"></ul>
+    <strong>মোট: <span id="total">০</span> টাকা</strong>
+  </div>
+
+  <script>
+    const cart = [];
+    function addToCart(name, price) {
+      cart.push({name, price});
+      displayCart();
+    }
+    function displayCart() {
+      const cartList = document.getElementById("cart-items");
+      cartList.innerHTML = "";
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price;
+        const li = document.createElement("li");
+        li.textContent = item.name + " - " + item.price + " টাকা";
+        cartList.appendChild(li);
+      });
+      document.getElementById("total").textContent = total;
+    }
+  </script>
+</body>
+</html>
